@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Linking Assets -->
+        <link rel="shortcut icon" href="assets/images/timer.png" type="image/x-icon">
+        <link rel="stylesheet" href="assets/css/index.css">
+        <link rel="stylesheet" href="assets/css/profile.css">
+        <link rel="stylesheet" href="assets/css/practice.css">
+        <link rel="stylesheet" href="assets/css/dark.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        
+        <!-- Title -->
+        <title>Profile - Typing Master</title>
+
+    </head>
+
+    <body class="light-mode">
+
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="navbar">
+                <!-- Website Brand/Logo -->
+                <div class="brand">
+                    <a href="./index.html" class="brand-name">Typing Test</a>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div class="navigation">
+                    <ul class="main-menu">
+                        <li class="nav-item"><a href="practice.html" class="nav-item-link"><i class="fas fa-keyboard"></i> Practice</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-item-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="profile.html" class="nav-item-link"><i class="fas fa-user"></i> Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-right">
+                    <!-- Github Repo Link -->
+                    <div class="github-icon">
+                        <a href="https://github.com/luandz123" class="nav-item-link"><i class='bx bx-sm bxl-github'></i></a>
+                    </div>
+
+                    <!-- Dark mode button -->
+                    <i id="icon1" onclick="toggleLightDarkMode()" class="bx bx-moon dark-btn" style="font-size: x-large;"></i>
+                </div>
+                <!-- Mobile Navigation Menu -->
+                <div class="mobile-nav">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+        </nav>
+        <!-- End of Navigation Bar -->
+        <div class="profile-container">
+            <img src="chung chi data analist.png" alt="Profile Picture" class="profile-picture" style="width: 100px; height: 100px; border-radius: 50%;">
+            <h2>Luandz</h2>
+            <p>email: nguyenvanluan@gmail.com</p>
+            <p>giới tính : nam</p>
+            <p>điểm số: 10</p>
+            <p>thời gian đã luyện tập : 2h37p</p>
+        </div>
+        <!-- Profile Content -->
+        <section id="hero element2">
+            <!-- User Details -->
+            <div class="container">
+                
+            </div>
+           
+        <footer>
+            <!-- Copyright -->
+            <p>
+                Made with &hearts; by Luandz. All Rights Reserved &copy; <span id="copyright"></span>
+            </p>
+        </footer>
+        <!-- End of Footer -->
+
+
+        <!-- Scripts -->
+        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+        <script src="assets/js/profile.js"></script>
+        <script src="assets/js/index.js"></script>
+        <script src="assets/js/dark.js"></script>
+
+    </body>
+</html>

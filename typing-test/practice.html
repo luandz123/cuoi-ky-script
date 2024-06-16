@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Linking Assets -->
+    <link rel="shortcut icon" href="assets/images/timer.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/index.css">
+    
+    <link rel="stylesheet" href="assets/css/dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- Title -->
+    <title>Practice | Practice your typing skills at ease</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            padding: 10px;
+            
+            
+            
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5%;
+            cursor: pointer;
+            width: auto;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        select {
+            width: 50px;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+        div {
+            margin: 10px 0;
+        }
+        label {
+            font-weight: bold;
+        }
+        #result {
+            color: green;
+            font-weight: bold;
+        }
+        .content{
+            height: 450px;
+        }
+        
+    </style>
+</head>
+
+<body class="light-mode">
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="navbar">
+            <!-- Website Brand/Logo -->
+            <div class="brand">
+                <a href="./index.html" class="brand-name">Typing Test</a>
+            </div>
+            <!-- Navigation Menu -->
+            <div class="navigation">
+                <ul class="main-menu">
+                    <li class="nav-item"><a href="practice.html" class="nav-item-link"><i class="fas fa-keyboard"></i> Practice</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-item-link"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li class="nav-item"><a href="profile.html" class="nav-item-link"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <!-- Github Repo Link -->
+                <div class="github-icon">
+                    <a href="https://github.com/luandz123" class="nav-item-link"><i class='bx bx-sm bxl-github'></i></a>
+                </div>
+                <!-- Dark mode button -->
+                <i id="icon1" onclick="toggleLightDarkMode()" class="bx bx-moon dark-btn" style="font-size: x-large;"></i>
+            </div>
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation Bar -->
+
+    <!-- Practice Content -->
+    <div class="content">
+        <button onclick="previousAudioText()" type="button">Bài Trước Đó</button>
+        <button onclick="playAudio()" type="button">Phát</button>
+        <button onclick="nextAudioText()" type="button">Bài tiếp theo</button>
+        <button onclick="showText()" type="button">Xem đáp án</button>
+        <select id="level" onchange="changeLevel()">
+            <option value="dễ">Dễ</option>
+            <option value="trung bình">Trung Bình</option>
+            <option value="khó">Khó</option>
+        </select>
+        <audio id="audio" src=""></audio>
+        <div>
+            <label for="inputText">Nhập :</label>
+            <input type="text" id="inputText" name="inputText" style="width: 200px; height: 50px;">
+            <button onclick="checkText()" type="button">Kiểm tra</button>
+        </div>
+        <div id="result"></div>
+        <div id="sampleText"></div>
+        <div class="cachra">
+            <h1>Đây là trang luyện tập của bạn</h1>
+            <p>Chúc bạn luyện tập tốt</p>
+        </div>
+
+        <script>
+            var audio = document.getElementById("audio");
+            var inputText = document.getElementById("inputText");
+            var result = document.getElementById("result");
+            var sampleTextElement = document.getElementById("sampleText");
+            var levelSelect = document.getElementById("level");
+            var levels = {
+                "dễ": {
+                    audios: ["assets/filemp3/de1.mp3", "assets/filemp3/de2.mp3", "assets/filemp3/de3.mp3", "assets/filemp3/de4.mp3", "assets/filemp3/de5.mp3", "assets/filemp3/de6.mp3", "assets/filemp3/de7.mp3", "assets/filemp3/de8.mp3", "assets/filemp3/de9.mp3", "assets/filemp3/de10.mp3"],
+                    texts: ["Hello, how are you?", "My name is luan.", "Nice to meet you.", "Where are you from?", "What do you do?", "I like to watch movies.", "What's your favorite color?", "I have a dog.", "What time is it?", "I'm hungry."]
+                },
+                "trung bình": {
+                    audios: ["assets/filemp3/tb1.mp3", "assets/filemp3/tb2.mp3", "assets/filemp3/tb3.mp3", "assets/filemp3/tb4.mp3", "assets/filemp3/tb5.mp3", "assets/filemp3/tb6.mp3", "assets/filemp3/tb7.mp3", "assets/filemp3/tb8.mp3", "assets/filemp3/tb9.mp3", "assets/filemp3/tb10.mp3"],
+                    texts: ["What are your hobbies?", "I'm interested in learning English.", "How long have you been studying English?", "What do you like to do in your free time?", "I'm looking for a new job.", "What kind of music do you like?", "I'm going to the beach this weekend.", "Have you ever been to viet nam?", "What's the weather like today?", "I think it's going to rain."]
+                },
+                "khó": {
+                    audios: ["assets/filemp3/kho1.mp3", "assets/filemp3/kho2.mp3", "assets/filemp3/kho3.mp3", "assets/filemp3/kho4.mp3", "assets/filemp3/kho5.mp3", "assets/filemp3/kho6.mp3", "assets/filemp3/kho7.mp3", "assets/filemp3/kho8.mp3", "assets/filemp3/kho9.mp3", "assets/filemp3/kho10.mp3"],
+                    texts: ["What are your thoughts on the current political situation?", "I'm having trouble understanding this concept. Could you explain it to me?", "I'm not convinced by your argument. Can you provide more evidence?", "I'm interested in your perspective on this issue.", "What are the advantages and disadvantages of this approach?", "I'm curious about your experience with this technology.", "Can you elaborate on that point?", "I'm not following you. Could you please clarify?", "I'd like to challenge your assumption.", "I think we need to consider the long-term consequences of this decision."]
+                }
+            };
+
+            var currentLevel = "dễ";
+            var index = 0;
+
+            function playAudio() {
+                audio.play();
+            }
+
+            function nextAudioText() {
+                index = (index + 1) % levels[currentLevel].texts.length; // Chuyển sang cặp tiếp theo
+                audio.src = levels[currentLevel].audios[index];
+                result.textContent = ""; // Xóa kết quả kiểm tra văn bản trước đó
+                inputText.value = ""; // Xóa văn bản nhập trước đó
+                sampleTextElement.textContent = ""; // Xóa văn bản mẫu hiển thị trước đó
+            }
+            function previousAudioText() {
+                index = (index - 1 + levels[currentLevel].texts.length) % levels[currentLevel].texts.length; // Chuyển về cặp trước đó
+                audio.src = levels[currentLevel].audios[index];
+                result.textContent = ""; // Xóa kết quả kiểm tra văn bản trước đó
+                inputText.value = ""; // Xóa văn bản nhập trước đó
+                sampleTextElement.textContent = ""; // Xóa văn bản mẫu hiển thị trước đó
+            }
+
+            function showText() {
+                if (sampleTextElement.textContent === "") {
+                    sampleTextElement.textContent = "Văn bản mẫu hiện tại: " + levels[currentLevel].texts[index];
+                } else {
+                    sampleTextElement.textContent = "";
+                }
+            }
+
+            function changeLevel() {
+                currentLevel = levelSelect.value;
+                index = 0; // Reset index khi thay đổi cấp độ
+                audio.src = levels[currentLevel].audios[index]; // Đặt file mp3 đầu tiên của cấp độ mới
+                result.textContent = ""; // Xóa kết quả kiểm tra văn bản trước đó
+                inputText.value = ""; // Xóa văn bản nhập trước đó
+                sampleTextElement.textContent = ""; // Xóa văn bản mẫu hiển thị trước đó
+            }
+
+            function checkText() {
+                var input = inputText.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[?.]/g, "").replace(/,/g, "");
+                var sample = levels[currentLevel].texts[index].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[?.]/g, "").replace(/,/g, "");
+                if (input === sample) {
+                    result.textContent = "kết quả chính xác.";
+                    result.style.color = "green";
+                } else {
+                    result.textContent = "chưa đúng. Hãy thử lại.";
+                    result.style.color = "red";
+                    inputText.value = ""; // Xóa văn bản nhập sai để cho phép nhập lại
+                }
+            }
+
+            window.onload = function() {
+                audio.src = levels[currentLevel].audios[index]; // Đặt file mp3 đầu tiên khi trang web tải xong
+            }
+        </script>
+    </div>
+    <!-- End of Practice Content -->
+   
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="copyright"></span> Listen and Type. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- Scripts -->
+    <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+    <script type="module" src="assets/js/practice.mjs"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/dark.js"></script>
+</body>
+
+</html>
